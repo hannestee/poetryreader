@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Package details</h1>
+    <p>Name: <%= package.name  %> </p>
+    <p>Description: <%= package.details.description  %> </p>
+    <p>Optional: <%= package.details.optional  %> </p>
+    <p>Python versions: <%= package.details.pythonVersions  %> </p>
+    <% if (package.packageDependencies.length !== 0) { %>
+    <h2>Package Dependencies</h2>
+    <% } %>
+    <ul>
+        <% package.packageDependencies.forEach(dependency => { %>
+            <% if (dependency.optional) { %> 
+            <% } else if (dependency.clickable) {%>
+                <li>
+                    <a href="<%=dependency.name %>"><%=dependency.name %></a>
+                </li>
+            <% } else { %>
+                <li> 
+                    <p><%=dependency.name %></p>
+                </li>
+            <% } %>
+        <% }) %>
+    </ul>
+    <% if (package.packageExtras.length !== 0) { %>
+    <h2>Optional Dependencies</h2>
+    <% } %>
+        <ul>
+        <% package.packageDependencies.forEach(dependency => { %>
+                <% if (dependency.optional) { %> 
+                <li>
+                    <a href="<%= dependency.name %>"><%= dependency.name %></a>
+                </li>
+        <% } %>
+        <% }) %>
+        <% package.packageExtras.forEach(extra => { %>
+            <% if (extra.clickable) { %> 
+                <li>
+                    <a href="<%= extra.name %>"><%= extra.name %></a>
+                </li>
+            <% } else {%>
+                <li>
+                    <%= extra.name %>
+                </li>
+            <% } %>
+        <% }) %>
+        </ul>
+
+    <% if (package.reverseDependencies.length !== 0) { %>
+    <h2>Reverse Dependencies</h2>
+    <% } %>
+    <ul>
+        <% package.reverseDependencies.forEach(dependency => { %>
+            <li>
+                <a href="<%= dependency %>"><%= dependency %></a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

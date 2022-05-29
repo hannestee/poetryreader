@@ -1,0 +1,21 @@
+{
+  "name": "poetryreader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "multer": "^1.4.4",
+    "serve-favicon": "^2.5.0"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
