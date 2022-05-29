@@ -34,6 +34,11 @@ app.post('/uploaded', (req, res) => {
     });
 })
 
-app.listen(3000, () => {
-    console.log(`Example app listening on port 3000`)
-})
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3001;
+}
+
+app.listen(port, () => {
+    console.log("Server started successfully")
+});
